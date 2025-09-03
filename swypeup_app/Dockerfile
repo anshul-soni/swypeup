@@ -5,7 +5,7 @@ FROM ghcr.io/cirruslabs/flutter:stable AS build
 WORKDIR /app
 
 # Copy pubspec files
-COPY pubspec.yaml pubspec.lock ./
+COPY pubspec.yaml ./
 
 # Get dependencies
 RUN flutter pub get
