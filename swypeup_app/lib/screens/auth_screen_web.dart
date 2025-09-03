@@ -33,14 +33,14 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
     try {
       if (_isLogin) {
         await ref.read(authProvider.notifier).login(
-          _emailController.text,
-          _passwordController.text,
+          email: _emailController.text,
+          password: _passwordController.text,
         );
       } else {
         await ref.read(authProvider.notifier).register(
-          _emailController.text,
-          _passwordController.text,
-          _nameController.text,
+          name: _nameController.text,
+          email: _emailController.text,
+          password: _passwordController.text,
         );
       }
     } catch (e) {
