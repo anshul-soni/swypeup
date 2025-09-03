@@ -1,5 +1,5 @@
-# Use the official Flutter image
-FROM ghcr.io/cirruslabs/flutter:stable AS build
+# Use the official Flutter image with web support
+FROM ghcr.io/cirruslabs/flutter:stable-web AS build
 
 # Set working directory
 WORKDIR /app
