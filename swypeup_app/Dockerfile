@@ -14,8 +14,8 @@ RUN flutter pub get
 COPY . .
 
 # Replace screens with web-compatible versions
-RUN cp lib/auth_screen_web.dart lib/screens/auth_screen.dart
-RUN cp lib/home_screen_web.dart lib/screens/home_screen.dart
+RUN cp lib/screens/auth_screen_web.dart lib/screens/auth_screen.dart
+RUN cp lib/screens/home_screen_web.dart lib/screens/home_screen.dart
 RUN cp lib/main_web.dart lib/main.dart
 
 # Build Flutter web app
