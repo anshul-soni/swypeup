@@ -4,14 +4,17 @@ FROM ghcr.io/cirruslabs/flutter:stable AS build
 # Set working directory
 WORKDIR /app
 
-# Copy pubspec files
-COPY pubspec.yaml ./
+# Copy web-compatible pubspec
+COPY pubspec_web.yaml ./pubspec.yaml
 
 # Get dependencies
 RUN flutter pub get
 
 # Copy source code
 COPY . .
+
+# Replace main.dart with web-compatible version
+RUN cp lib/main_web.dart lib/main.dart
 
 # Build Flutter web app
 RUN flutter build web --release
