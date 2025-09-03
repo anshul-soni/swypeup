@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'screens/auth_screen.dart';
-import 'screens/home_screen.dart';
+import 'screens/auth_screen_web.dart';
+import 'screens/home_screen_web.dart';
 import 'providers/auth_provider.dart';
 
 void main() {
