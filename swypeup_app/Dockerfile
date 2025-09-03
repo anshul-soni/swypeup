@@ -18,7 +18,8 @@ RUN cp lib/screens/auth_screen_web.dart lib/screens/auth_screen.dart
 RUN cp lib/screens/home_screen_web.dart lib/screens/home_screen.dart
 RUN cp lib/main_web.dart lib/main.dart
 
-# Build Flutter web app
+# Configure project for web and build
+RUN flutter create . --platforms web
 RUN flutter build web --release
 
 # Use nginx to serve the built app
