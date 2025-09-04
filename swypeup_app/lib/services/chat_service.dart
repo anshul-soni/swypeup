@@ -2,7 +2,10 @@ import 'package:dio/dio.dart';
 import '../models/user.dart';
 
 class ChatService {
-  static const String baseUrl = 'http://localhost:3000';
+  static const String baseUrl = String.fromEnvironment(
+    'BACKEND_URL',
+    defaultValue: 'http://localhost:3000',
+  );
   late final Dio _dio;
 
   ChatService() {

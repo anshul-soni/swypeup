@@ -20,7 +20,15 @@ RUN cp lib/main_web.dart lib/main.dart
 
 # Configure project for web and build
 RUN flutter create . --platforms web
-RUN flutter build web --release
+# Allow injecting backend URL at build time
+ARG BACKEND_URL
+
+# Build web with BACKEND_URL provided via dart-define (only if BACKEND_URL is set)
+RUN if [ -n "$BACKEND_URL" ]; then \
+        flutter build web --release --dart-define=BACKEND_URL=$BACKEND_URL; \
+    else \
+        flutter build web --release; \
+    fi
 
 # Use nginx to serve the built app
 FROM nginx:alpine
