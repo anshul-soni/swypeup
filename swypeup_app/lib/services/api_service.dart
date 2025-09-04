@@ -11,6 +11,7 @@ class ApiService {
   late final Dio _dio;
 
   ApiService() {
+    print('API Service initialized with baseUrl: $baseUrl');
     _dio = Dio(BaseOptions(
       baseUrl: baseUrl,
       connectTimeout: const Duration(seconds: 10),
@@ -25,6 +26,8 @@ class ApiService {
       },
       onError: (error, handler) {
         print('API Error: ${error.message}');
+        print('Request URL: ${error.requestOptions.uri}');
+        print('Response: ${error.response?.data}');
         handler.next(error);
       },
     ));
@@ -37,13 +40,17 @@ class ApiService {
     required String password,
   }) async {
     try {
+      print('Attempting to register user with email: $email');
+      print('Making request to: ${_dio.options.baseUrl}/auth/register');
       final response = await _dio.post('/auth/register', data: {
         'name': name,
         'email': email,
         'password': password,
       });
+      print('Registration successful');
       return response.data;
     } catch (e) {
+      print('Registration failed with error: $e');
       throw _handleError(e);
     }
   }
