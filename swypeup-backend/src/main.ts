@@ -11,7 +11,16 @@ async function bootstrap() {
     transform: true,
   }));
 
-  app.enableCors();
+  app.enableCors({
+    origin: [
+      'https://swypeup-frontend-production.up.railway.app',
+      'http://localhost:3000',
+      'http://localhost:8080',
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+  });
   
   await app.listen(process.env.PORT ?? 3000);
   console.log(`Application is running on: ${await app.getUrl()}`);
