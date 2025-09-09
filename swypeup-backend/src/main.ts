@@ -26,8 +26,14 @@ async function bootstrap() {
   });
   
   const port = process.env.PORT || 3000;
-  await app.listen(port, '0.0.0.0');
-  console.log(`Application is running on: http://0.0.0.0:${port}`);
-  console.log(`Application is running on: ${await app.getUrl()}`);
+  console.log(`About to start server on port: ${port}`);
+  try {
+    await app.listen(port, '0.0.0.0');
+    console.log(`Application is running on: http://0.0.0.0:${port}`);
+    console.log(`Application is running on: ${await app.getUrl()}`);
+  } catch (error) {
+    console.error('Failed to start server:', error);
+    throw error;
+  }
 }
 bootstrap();
